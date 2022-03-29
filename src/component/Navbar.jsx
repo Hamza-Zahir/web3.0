@@ -13,7 +13,7 @@ const Navbar = () => {
         <img
           className="w-100 py-2"
           style={{ maxWidth: "200px" }}
-          src="../../images/logo.png"
+          src="https://github.com/adrianhajdin/project_web3.0/blob/main/client/images/logo.png?raw=true"
           alt=""
         />
       </div>
