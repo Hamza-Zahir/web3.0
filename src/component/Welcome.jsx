@@ -94,7 +94,7 @@ const Welcome = () => {
           <Input
             type="text"
             name="keyoword"
-            placeholder="Keyoword (Gif)"
+            placeholder="Keyword (Gif)"
             handleChange={handleChange}
             className="w-100 p-2 text-light mt-2 input"
           />
