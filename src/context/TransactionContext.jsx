@@ -26,7 +26,6 @@ export const TransactionProvider = ({ children }) => {
         message: "",
     });
     const [isLoding, setIsLoding] = useState(false);
-    // const [transactionCount, setTransactionCount] = useState();
     const [Transactoins, setTransactoins] = useState([]);
 
 
@@ -63,21 +62,12 @@ export const TransactionProvider = ({ children }) => {
                     ).toLocaleString(),
                 })
             );
-            
+
             setTransactoins(structuredTransactions);
         } catch (error) {
             console.log(error);
         }
     };
-    // const checkIfTransactionsExist = async () => {
-    //     try {
-    //         const transactionContract = grtEthereumContract();
-    //         const transactionCount = await transactionContract.getTransactionsCounter();
-    //         setTransactionCount(transactionCount)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // };
 
     const handleChange = (e, name) => {
         setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
@@ -86,8 +76,42 @@ export const TransactionProvider = ({ children }) => {
     const connectWallet = async () => {
         try {
             if (!ethereum) return alert("please install metamask");
+
+            // const networks = {
+            //     bns :{
+                    
+            //     }
+            // }
             const accountes = await ethereum.request({
-                method: "eth_requestAccounts",
+                method: "wallet_addEthereumChain",
+                params: [
+                    {
+                        chainId: `0x${Number(56).toString(16)}`,
+                        chainName: "Binance Smart Chain Mainnet",
+                        nativeCurrency: {
+                            name: "Binance Chain Native Token",
+                            symbol: "BNB",
+                            decimals: 18,
+                        },
+                        rpcUrls: [
+                            "https://bsc-dataseed1.binance.org",
+                            "https://bsc-dataseed2.binance.org",
+                            "https://bsc-dataseed3.binance.org",
+                            "https://bsc-dataseed4.binance.org",
+                            "https://bsc-dataseed1.defibit.io",
+                            "https://bsc-dataseed2.defibit.io",
+                            "https://bsc-dataseed3.defibit.io",
+                            "https://bsc-dataseed4.defibit.io",
+                            "https://bsc-dataseed1.ninicoin.io",
+                            "https://bsc-dataseed2.ninicoin.io",
+                            "https://bsc-dataseed3.ninicoin.io",
+                            "https://bsc-dataseed4.ninicoin.io",
+                            "wss://bsc-ws-node.nariox.org"
+                        ],
+                        blockExplorerUrls: ["https://bscscan.com"]
+
+                    }
+                ]
             });
             setCurrentAccount(accountes[0]);
         } catch (error) {
@@ -125,8 +149,7 @@ export const TransactionProvider = ({ children }) => {
             await transactionHash.wait();
             setIsLoding(false);
             console.log(`success ${transactionHash.hash}`);
-            // const transactionCount = await transactionContract.getTransactionsCounter();
-            // setTransactionCount(transactionCount.toNumber());
+
             window.reload();
         } catch (error) {
             console.log(error);
@@ -135,7 +158,7 @@ export const TransactionProvider = ({ children }) => {
     };
     useEffect(() => {
         checkWalletIsConnected();
-        // checkIfTransactionsExist();
+
     });
 
 
@@ -158,3 +181,4 @@ export const TransactionProvider = ({ children }) => {
         </TransactionContext.Provider>
     );
 };
+
