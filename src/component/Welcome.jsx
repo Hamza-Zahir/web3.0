@@ -43,6 +43,9 @@ const Welcome = () => {
             Connect Wallet
           </div>
         )}
+        <div>
+          <a href="https://faucet.egorfine.com/" target="_blank" className="btn btn-warning fw-bold rounded-pill d-block  col-md-10 col-lg-8  mx-auto my-4">Get Some Ropsten ETH in your wallet</a>
+        </div>
         <div className="row m-0 my-3 border bor-rud text-center">
           <div className="col-4 border-bottom border-end px-0 py-3">
             Reliability
@@ -127,3 +130,4 @@ const Welcome = () => {
 };
 
 export default Welcome;
+
