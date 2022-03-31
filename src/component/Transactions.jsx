@@ -11,29 +11,37 @@ const Transactions = () => {
       id="Transactions"
       className="Transactions text-light py-1 my-4 col-xl-11 mx-auto"
     >
-
-      {(!CurrentAccount && !Transactoins.length) ? (
+      {!CurrentAccount && !Transactoins.length ? (
         <div className="info text-light  border border-dark box-sh p-4 my-2 mx-auto col-10 bor-rud d-flex ">
           <span className="icon rounded-circle">
             <HiInformationCircle fontSize={20} />
           </span>
-          <h5>Please connect your account and switch to ropsten test network to see
-            last transactions</h5>
+          <h5>
+            Please connect your account and switch to ropsten test network to
+            see last transactions
+          </h5>
         </div>
-      ) : ("")}
-      {(CurrentAccount && !Transactoins.length) ? (
-
+      ) : (
+        ""
+      )}
+      {CurrentAccount && !Transactoins.length ? (
         <div className="info text-light  border border-dark box-sh p-4 my-2 mx-auto col-10 bor-rud d-flex ">
           <span className="icon rounded-circle">
             <HiInformationCircle fontSize={20} />
           </span>
-          <h5> Please  switch to ( Ropsten Test Network) to see
-            last transactions</h5>
+          <h5>
+            {" "}
+            Please switch to ( Ropsten Test Network) to see last transactions
+          </h5>
         </div>
-      ) : ("")}
-      {(CurrentAccount && Transactoins.length) ? (
+      ) : (
+        ""
+      )}
+      {CurrentAccount && Transactoins.length ? (
         <h1 className="text-center my-4 ">Last Transaction</h1>
-      ) : ("")}
+      ) : (
+        ""
+      )}
       {Transactoins.length ? (
         <div>
           <div className="row justify-content-center p-0 m-0 mt-2 ">
@@ -52,8 +60,9 @@ const Transactions = () => {
             })}
           </div>
         </div>
-      ) : ("")}
-
+      ) : (
+        ""
+      )}
     </div>
   );
 };

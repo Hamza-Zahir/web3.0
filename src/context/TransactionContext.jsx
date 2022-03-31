@@ -76,8 +76,8 @@ export const TransactionProvider = ({ children }) => {
     const connectWallet = async () => {
         try {
             if (!ethereum) return alert("please install metamask");
-           
-            await ethereum.request({
+
+      await ethereum.request({
                 method: "wallet_addEthereumChain",
                 params: [
                     {
@@ -111,7 +111,8 @@ export const TransactionProvider = ({ children }) => {
             });
             const accountes = await ethereum.request({
                 method: "eth_requestAccounts",
-            });
+            })
+        
             setCurrentAccount(accountes[0]);
         } catch (error) {
             console.log(error);
@@ -157,10 +158,12 @@ export const TransactionProvider = ({ children }) => {
     };
     useEffect(() => {
         checkWalletIsConnected();
+
         if (!CurrentAccount) {
             connectWallet();
         }
         
+
     });
 
 
@@ -183,3 +186,4 @@ export const TransactionProvider = ({ children }) => {
         </TransactionContext.Provider>
     );
 };
+
