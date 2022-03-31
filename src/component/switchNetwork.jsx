@@ -119,7 +119,7 @@ const chengNetwork = async (name) => {
 
 function switchNetwork() {
   return (
-    <div className="border row w-100 p-3 bg-dark justify-content-center ">
+    <div className="border border-dark w-100  justify-content-center text-dark ">
       {[...Object.keys(networks)].map((chainNet) => {
         return (
           <div
@@ -128,10 +128,10 @@ function switchNetwork() {
               chengNetwork(chainNet);
             }}
             style={{ cursor: "pointer" }}
-            className="m-2 col-3 fw-bold d-flex flex-column justify-content-center align-items-center"
+            className="chain p-3 fw-bold border-bottom border-dark"
           >
             <img src={images[chainNet].imgsrs} alt="" />
-            <span>{chainNet}</span>
+            <span className="ms-3">{chainNet}</span>
           </div>
         );
       })}

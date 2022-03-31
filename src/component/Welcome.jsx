@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { FaEthereum } from "react-icons/fa";
 import { BsInfoCircle } from "react-icons/bs";
@@ -56,8 +57,9 @@ const Welcome = () => {
          )}  
         <div>
           {chain ? (
-            <div className="" onClick={()=>{setChain(false)}}>
-                     <SwitchNetwork />
+            <div className="switch_card" onClick={()=>{setChain(false)}}>
+              <span className="icon text-danger"><AiOutlineClose fontSize={25} /></span>
+              <SwitchNetwork />
                   </div>
           ):("")}
   
