@@ -1,9 +1,10 @@
-import React, { useContext} from "react";
+import React, { useState, useContext } from "react";
+
 import { FaEthereum } from "react-icons/fa";
 import { BsInfoCircle } from "react-icons/bs";
 import { TransactionContext } from "../context/TransactionContext";
 import ShortAdress from "./shortAddress";
-
+import SwitchNetwork from "./switchNetwork"
 const Input = ({ type, placeholder, name, handleChange, step, className }) => (
   <input type={type}
     placeholder={placeholder}
@@ -13,9 +14,10 @@ const Input = ({ type, placeholder, name, handleChange, step, className }) => (
     className={className} />
 );
 
+
 const Welcome = () => {
   const { connectWallet, CurrentAccount, formData, handleChange, sendTransaction,isLoding} = useContext(TransactionContext);
-  
+  let [chain, setChain] = useState(false);
   const handleSubmit = (e) => {
     const { addressTo, amount, keyoword, message } = formData;
     e.preventDefault();
@@ -24,8 +26,8 @@ const Welcome = () => {
   
     sendTransaction();
 
-
   }
+
  
   return (
     <div className="text-light m-0 mt-3 p-3 col-xl-10 mx-auto row align-items-center">
@@ -42,9 +44,24 @@ const Welcome = () => {
           >
             Connect Wallet
           </div>
-        )}
+        )} 
+        
+        {CurrentAccount && (
+          <div
+            onClick={()=>{setChain(!chain)}}
+            className="btn btn-warning fw-bold rounded-pill d-block  col-md-10 col-lg-8  mx-auto my-4"
+          >
+            switch Network
+          </div>
+         )}  
         <div>
-          <a href="https://faucet.egorfine.com/" target="_blank" className="btn btn-warning fw-bold rounded-pill d-block  col-md-10 col-lg-8  mx-auto my-4">Get Some Ropsten ETH in your wallet</a>
+          {chain ? (
+            <div className="" onClick={()=>{setChain(false)}}>
+                     <SwitchNetwork />
+                  </div>
+          ):("")}
+  
+
         </div>
         <div className="row m-0 my-3 border bor-rud text-center">
           <div className="col-4 border-bottom border-end px-0 py-3">
